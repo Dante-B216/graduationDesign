@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+import web.apps
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -36,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app01.apps.App01Config',
+    'web.apps.WebConfig'
 ]
 
 MIDDLEWARE = [
@@ -131,8 +134,24 @@ SMS_TEMPLATE = {
     'login': 2367220
 }
 
+# 配置django-redis
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",  # 指定后端
+        "LOCATION": "redis://192.168.31.241:6379",      # Redis 地址
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",  # 客户端类
+            "CONNECTION_POOL_KWARGS": {
+                "max_connections": 1000,
+                "encoding": "utf-8"
+            },
+        },
+        "PASSWORD": "foobared",     # Redis 密码
+    }
+}
+
+# 导入本地设置
 try:
     from .local_settings.py import *
-
 except ImportError:
     pass
