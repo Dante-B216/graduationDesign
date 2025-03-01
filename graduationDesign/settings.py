@@ -151,6 +151,16 @@ CACHES = {
     }
 }
 
+# 网页白名单：无需登录可访问
+WHITE_REGEX_URL_LIST = [
+    "/web/register/",
+    "/web/img/code/",
+    "/web/login/user_phone/",
+    "/web/login/user_name/",
+    "/web/login/user_email/",
+    "/web/index/"
+]
+
 # 导入本地设置
 try:
     from .local_settings.py import *
