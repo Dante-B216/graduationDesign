@@ -158,7 +158,8 @@ WHITE_REGEX_URL_LIST = [
     "/web/login/user_phone/",
     "/web/login/user_name/",
     "/web/login/user_email/",
-    "/web/index/"
+    "/web/index/",
+    "/web/help/"
 ]
 
 # 导入本地设置
